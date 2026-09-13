@@ -4,7 +4,7 @@ Site vitrine — nettoyage auto, canapé, tapis &amp; matelas à domicile, sur O
 
 Page statique, sans build : `index.html` / `nettoyage-auto.html` / `canape-textile.html` / `contact.html` / `mentions-legales.html` + `assets/`.
 
-Identité visuelle originale (bleu/cyan "eau claire", Poppins + Inter), distincte du site CKLEAN AUTO 45 et du design du site précédent (fait par un autre prestataire, sur Framer). Les 8 photos dans `assets/realisations/` sont en revanche bien les vraies photos du client (ses propres interventions) — seul le design/site du précédent prestataire n'a pas été repris.
+Identité visuelle originale (bleu/cyan "eau claire", Poppins + Inter), distincte du site CKLEAN AUTO 45 et du design du site précédent (fait par un autre prestataire, sur Framer) — le design de ce site précédent n'a pas été repris. Le logo et les 3 photos hero (`assets/heros/`) ont été fournis directement par le client ; les 8 photos dans `assets/realisations/` sont ses propres photos d'interventions, conservées à sa demande.
 
 ## Développement local
 ```bash
@@ -24,7 +24,6 @@ Prévu pour Vercel — déploiement automatique à chaque push sur `main`.
 - **Urgent — e-mail de contact** : tant que la clé Web3Forms n'est pas configurée (voir ci-dessous), *toutes* les demandes du formulaire de contact partent en `mailto:` vers `contact@h2oufpropre45.fr`. Cette adresse n'est pas vérifiée et n'existe peut-être pas encore. Vérifier/créer cette adresse ou la remplacer par la vraie adresse du client avant toute mise en ligne, sous peine de perdre des demandes de devis silencieusement.
 - **Urgent — clé Web3Forms** : configurer `access_key` dans `contact.html` pour activer l'envoi direct (ne pas laisser le site vivre uniquement sur le fallback mailto ci-dessus).
 - Forme juridique, SIRET complet, e-mail de contact, nom de famille du responsable de publication dans `mentions-legales.html`
-- Logo définitif si le client souhaite conserver son visuel actuel (badge rond bleu) plutôt que le wordmark SVG inclus ici
-- **Photos** : `assets/realisations/` contient 8 vraies photos du client (intérieurs auto, extérieur SUV, canapé avant/après). Couverture encore incomplète : aucune photo de tapis, de matelas, ni de véhicule extérieur "avant" sale — à demander au client si possible, des photos de smartphone suffisent.
-- `assets/og-image.svg` (image de partage réseaux sociaux) fonctionne sur la plupart des plateformes mais Facebook/X préfèrent un raster (JPG/PNG 1200×630) — convertir le SVG si besoin d'une compatibilité maximale
+- **Photos** : le logo réel du client est utilisé partout (header/footer/favicon/apple-touch-icon/og-image), 3 photos hero (`assets/heros/`) illustrent l'accueil et les 2 pages de service, et 8 photos d'interventions (`assets/realisations/`) alimentent la galerie et les bandeaux "pourquoi nous choisir". Couverture encore incomplète : aucune photo de tapis ni de matelas — à demander au client si possible, des photos de smartphone suffisent.
+- `assets/og-image.svg` (image de partage réseaux sociaux) intègre déjà le vrai logo mais reste au format SVG ; Facebook/X préfèrent un raster (JPG/PNG 1200×630) pour un rendu garanti — convertir si besoin d'une compatibilité maximale.
 - Redirections depuis les anciennes URLs Framer lors de la bascule du domaine

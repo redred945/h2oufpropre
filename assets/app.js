@@ -105,91 +105,89 @@
     }
   }
 
-  // price simulator — canapé / tapis / matelas (canape-textile.html)
+  // price simulator — canapé / tapis / matelas (canape-textile.html), quantity-based
   var estimTextile = document.getElementById('estimTextile');
   if (estimTextile) {
     var outTextile = document.getElementById('estimTextilePrice');
-    var sizeGroups = Array.prototype.slice.call(estimTextile.querySelectorAll('.estim__sizes'));
-    var calcTextile = function () {
-      var visible = estimTextile.querySelector('.estim__sizes.is-active');
-      var t = visible ? visible.querySelector('input[name="taille"]:checked') : null;
-      if (outTextile) outTextile.textContent = t ? Number(t.value) : '—';
+    var MAX_QTY = 9;
+
+    var getQty = function (row) { return Number(row.querySelector('.qty__value').textContent) || 0; };
+    var setQty = function (row, n) {
+      n = Math.max(0, Math.min(MAX_QTY, n));
+      row.querySelector('.qty__value').textContent = n;
+      row.classList.toggle('has-qty', n > 0);
+      row.querySelector('[data-action="dec"]').disabled = n <= 0;
+      row.querySelector('[data-action="inc"]').disabled = n >= MAX_QTY;
     };
 
-    var typeLabels = { canape: 'Canapé', tapis: 'Tapis', matelas: 'Matelas' };
-    estimTextile.querySelectorAll('input[name="type"]').forEach(function (input) {
-      input.addEventListener('change', function () {
-        sizeGroups.forEach(function (g) {
-          var active = g.getAttribute('data-type') === input.value;
-          g.classList.toggle('is-active', active);
-          g.querySelectorAll('input[name="taille"]').forEach(function (r) { r.checked = false; r.disabled = !active; });
+    var summarizeGroup = function (group) {
+      var out2 = group.querySelector('.estim__gsummary');
+      if (!out2) return;
+      var rows = Array.prototype.slice.call(group.querySelectorAll('.qty')).filter(function (r) { return getQty(r) > 0; });
+      if (!rows.length) { out2.textContent = ''; return; }
+      var count = rows.reduce(function (sum, r) { return sum + getQty(r); }, 0);
+      var subtotal = rows.reduce(function (sum, r) { return sum + getQty(r) * Number(r.getAttribute('data-price')); }, 0);
+      out2.textContent = count + (count > 1 ? ' articles · ' : ' article · ') + subtotal + ' €';
+    };
+
+    var calcTextile = function () {
+      var rows = Array.prototype.slice.call(estimTextile.querySelectorAll('.qty'));
+      var total = rows.reduce(function (sum, r) { return sum + getQty(r) * Number(r.getAttribute('data-price')); }, 0);
+      if (outTextile) outTextile.textContent = total;
+      estimTextile.querySelectorAll('.estim__group').forEach(summarizeGroup);
+    };
+
+    estimTextile.querySelectorAll('.qty').forEach(function (row) {
+      setQty(row, 0);
+      row.querySelectorAll('.qty__btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var delta = btn.getAttribute('data-action') === 'inc' ? 1 : -1;
+          setQty(row, getQty(row) + delta);
+          calcTextile();
         });
-        calcTextile();
       });
     });
 
     var textileGroups = Array.prototype.slice.call(estimTextile.querySelectorAll('.estim__group'));
-    if (textileGroups.length) {
-      var summarizeTextileGroup = function (group) {
-        var out2 = group.querySelector('.estim__gsummary');
-        if (!out2) return;
-        var checked = group.querySelector('input:checked');
-        if (!checked) { out2.textContent = ''; return; }
-        var wrap = checked.closest('.opt');
-        var span = wrap && wrap.querySelector('span');
-        out2.textContent = span ? span.textContent.trim() : '';
+    textileGroups.forEach(function (g) {
+      var head = g.querySelector('.estim__ghead');
+      if (!head) return;
+      var toggle = function () {
+        var open = !g.classList.contains('is-open');
+        g.classList.toggle('is-open', open);
+        head.setAttribute('aria-expanded', open ? 'true' : 'false');
       };
-      var openTextileGroup = function (target) {
-        textileGroups.forEach(function (g) {
-          var open = g === target;
-          g.classList.toggle('is-open', open);
-          var head = g.querySelector('.estim__ghead');
-          if (head) head.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
-      };
-      textileGroups.forEach(function (g, i) {
-        var head = g.querySelector('.estim__ghead');
-        if (head) {
-          var toggle = function () { if (!g.classList.contains('is-open')) openTextileGroup(g); };
-          head.addEventListener('click', toggle);
-          head.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-          });
-        }
-        g.addEventListener('change', function (e) {
-          summarizeTextileGroup(g);
-          if (e.target.type === 'radio' && g.classList.contains('is-open')) {
-            var next = textileGroups[i + 1];
-            if (next) openTextileGroup(next);
-          }
-        });
+      head.addEventListener('click', toggle);
+      head.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
       });
-    }
+    });
 
-    estimTextile.addEventListener('change', calcTextile);
     calcTextile();
 
     var estimTextileCta = document.getElementById('estimTextileCta');
     if (estimTextileCta) {
       estimTextileCta.addEventListener('click', function () {
-        var typeInput = estimTextile.querySelector('input[name="type"]:checked');
-        var visible = estimTextile.querySelector('.estim__sizes.is-active');
-        var sizeInput = visible ? visible.querySelector('input[name="taille"]:checked') : null;
-        var sizeWrap = sizeInput && sizeInput.closest('.opt');
-        var sizeLabel = sizeWrap ? sizeWrap.querySelector('span').textContent.trim() : '';
-        var typeLabel = typeInput ? typeLabels[typeInput.value] : '';
-        var lines = [
-          'Bonjour,',
-          '',
-          'Je souhaite un devis à partir de l’estimation en ligne :',
-          '• Article : ' + typeLabel,
-          '• Taille : ' + sizeLabel,
-          '• Estimation affichée : ' + (outTextile ? outTextile.textContent : '') + ' €',
-          '', 'Merci de me recontacter pour convenir d’un créneau.'
-        ];
+        var groupNames = { estimCanapeBody: 'Canapé', estimTapisBody: 'Tapis', estimMatelasBody: 'Matelas' };
+        var lines = ['Bonjour,', '', 'Je souhaite un devis à partir de l’estimation en ligne :'];
+        var any = false;
+        estimTextile.querySelectorAll('.estim__gbody').forEach(function (gbody) {
+          var label = groupNames[gbody.id] || '';
+          gbody.querySelectorAll('.qty').forEach(function (row) {
+            var qty = getQty(row);
+            if (!qty) return;
+            any = true;
+            var name = row.querySelector('.qty__label b').previousSibling.textContent.trim();
+            var price = Number(row.getAttribute('data-price'));
+            lines.push('• ' + label + ' — ' + name + ' ×' + qty + ' — ' + (qty * price) + ' €');
+          });
+        });
+        if (!any) lines.push('• (aucun article sélectionné)');
+        lines.push('• Estimation affichée : ' + (outTextile ? outTextile.textContent : '') + ' €');
+        lines.push('', 'Merci de me recontacter pour convenir d’un créneau.');
         try {
           sessionStorage.setItem('h2o_devis', JSON.stringify({
-            prestation: typeLabel, vehicule: (typeLabel + ' — ' + sizeLabel), message: lines.join('\n')
+            prestation: 'Canapé / tapis / matelas', vehicule: 'Voir détail du message', message: lines.join('\n')
           }));
         } catch (e) {}
       });

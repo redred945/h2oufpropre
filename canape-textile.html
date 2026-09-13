@@ -6,6 +6,7 @@
 <title>Canapé, tapis &amp; matelas à domicile | H2Ouf Propre 45</title>
 <meta name="description" content="Shampoing en profondeur de vos canapés, tapis et matelas, à domicile sur Orléans et son agglomération. Sans démontage ni transport, intervention 24h/24." />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <link rel="canonical" href="https://h2oufpropre45.fr/canape-textile.html" />
 <meta property="og:title" content="Nettoyage canapé, tapis &amp; matelas à domicile — H2Ouf Propre 45" />
 <meta property="og:description" content="Shampoing en profondeur à domicile, sans démontage ni transport. Canapés dès 60€, tapis dès 30€, matelas dès 60€." />
@@ -178,52 +179,116 @@
       <div class="head reveal">
         <p class="label">Estimation en ligne</p>
         <h2>Composez votre nettoyage textile</h2>
-        <p>Choisissez l'article puis sa taille : le prix indicatif se met à jour en direct.</p>
+        <p>Ajoutez autant d'articles que besoin — canapés, tapis, matelas — le total se met à jour en direct.</p>
       </div>
       <form class="estim reveal" id="estimTextile">
         <div class="estim__fields">
           <fieldset class="estim__group is-open">
-            <legend class="sr-only">Type d'article</legend>
-            <div class="estim__ghead" role="button" tabindex="0" aria-expanded="true" aria-controls="estimTypeBody">
-              <span class="estim__gtitle">01 · Article</span>
+            <legend class="sr-only">Canapés</legend>
+            <div class="estim__ghead" role="button" tabindex="0" aria-expanded="true" aria-controls="estimCanapeBody">
+              <span class="estim__gtitle">Canapés</span>
               <span class="estim__gsummary"></span>
               <span class="estim__gchev" aria-hidden="true">›</span>
             </div>
-            <div class="estim__gbody" id="estimTypeBody">
-              <label class="opt"><input type="radio" name="type" value="canape" /> <span>Canapé</span></label>
-              <label class="opt"><input type="radio" name="type" value="tapis" /> <span>Tapis</span></label>
-              <label class="opt"><input type="radio" name="type" value="matelas" /> <span>Matelas</span></label>
+            <div class="estim__gbody" id="estimCanapeBody">
+              <div class="qty" data-price="60">
+                <span class="qty__label">1 à 3 places<b>60 €</b></span>
+                <div class="qty__ctrl">
+                  <button type="button" class="qty__btn" data-action="dec" aria-label="Diminuer la quantité">−</button>
+                  <output class="qty__value">0</output>
+                  <button type="button" class="qty__btn" data-action="inc" aria-label="Augmenter la quantité">+</button>
+                </div>
+              </div>
+              <div class="qty" data-price="70">
+                <span class="qty__label">4 à 5 places<b>70 €</b></span>
+                <div class="qty__ctrl">
+                  <button type="button" class="qty__btn" data-action="dec" aria-label="Diminuer la quantité">−</button>
+                  <output class="qty__value">0</output>
+                  <button type="button" class="qty__btn" data-action="inc" aria-label="Augmenter la quantité">+</button>
+                </div>
+              </div>
+              <div class="qty" data-price="80">
+                <span class="qty__label">6 places et +<b>80 €</b></span>
+                <div class="qty__ctrl">
+                  <button type="button" class="qty__btn" data-action="dec" aria-label="Diminuer la quantité">−</button>
+                  <output class="qty__value">0</output>
+                  <button type="button" class="qty__btn" data-action="inc" aria-label="Augmenter la quantité">+</button>
+                </div>
+              </div>
             </div>
           </fieldset>
           <fieldset class="estim__group">
-            <legend class="sr-only">Taille</legend>
-            <div class="estim__ghead" role="button" tabindex="0" aria-expanded="false" aria-controls="estimSizeBody">
-              <span class="estim__gtitle">02 · Taille</span>
+            <legend class="sr-only">Tapis</legend>
+            <div class="estim__ghead" role="button" tabindex="0" aria-expanded="false" aria-controls="estimTapisBody">
+              <span class="estim__gtitle">Tapis</span>
               <span class="estim__gsummary"></span>
               <span class="estim__gchev" aria-hidden="true">›</span>
             </div>
-            <div class="estim__gbody" id="estimSizeBody">
-              <div class="estim__sizes is-active" data-type="canape">
-                <label class="opt"><input type="radio" name="taille" value="60" /> <span>1 à 3 places</span><b>60 €</b></label>
-                <label class="opt"><input type="radio" name="taille" value="70" /> <span>4 à 5 places</span><b>70 €</b></label>
-                <label class="opt"><input type="radio" name="taille" value="80" /> <span>6 places et +</span><b>80 €</b></label>
+            <div class="estim__gbody" id="estimTapisBody">
+              <div class="qty" data-price="30">
+                <span class="qty__label">Petit tapis<b>30 €</b></span>
+                <div class="qty__ctrl">
+                  <button type="button" class="qty__btn" data-action="dec" aria-label="Diminuer la quantité">−</button>
+                  <output class="qty__value">0</output>
+                  <button type="button" class="qty__btn" data-action="inc" aria-label="Augmenter la quantité">+</button>
+                </div>
               </div>
-              <div class="estim__sizes" data-type="tapis">
-                <label class="opt"><input type="radio" name="taille" value="30" /> <span>Petit tapis</span><b>30 €</b></label>
-                <label class="opt"><input type="radio" name="taille" value="40" /> <span>Tapis moyen</span><b>40 €</b></label>
-                <label class="opt"><input type="radio" name="taille" value="50" /> <span>Grand tapis</span><b>50 €</b></label>
+              <div class="qty" data-price="40">
+                <span class="qty__label">Tapis moyen<b>40 €</b></span>
+                <div class="qty__ctrl">
+                  <button type="button" class="qty__btn" data-action="dec" aria-label="Diminuer la quantité">−</button>
+                  <output class="qty__value">0</output>
+                  <button type="button" class="qty__btn" data-action="inc" aria-label="Augmenter la quantité">+</button>
+                </div>
               </div>
-              <div class="estim__sizes" data-type="matelas">
-                <label class="opt"><input type="radio" name="taille" value="60" /> <span>1 place</span><b>60 €</b></label>
-                <label class="opt"><input type="radio" name="taille" value="70" /> <span>2 places</span><b>70 €</b></label>
-                <label class="opt"><input type="radio" name="taille" value="80" /> <span>King size</span><b>80 €</b></label>
+              <div class="qty" data-price="50">
+                <span class="qty__label">Grand tapis<b>50 €</b></span>
+                <div class="qty__ctrl">
+                  <button type="button" class="qty__btn" data-action="dec" aria-label="Diminuer la quantité">−</button>
+                  <output class="qty__value">0</output>
+                  <button type="button" class="qty__btn" data-action="inc" aria-label="Augmenter la quantité">+</button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="estim__group">
+            <legend class="sr-only">Matelas</legend>
+            <div class="estim__ghead" role="button" tabindex="0" aria-expanded="false" aria-controls="estimMatelasBody">
+              <span class="estim__gtitle">Matelas</span>
+              <span class="estim__gsummary"></span>
+              <span class="estim__gchev" aria-hidden="true">›</span>
+            </div>
+            <div class="estim__gbody" id="estimMatelasBody">
+              <div class="qty" data-price="60">
+                <span class="qty__label">1 place<b>60 €</b></span>
+                <div class="qty__ctrl">
+                  <button type="button" class="qty__btn" data-action="dec" aria-label="Diminuer la quantité">−</button>
+                  <output class="qty__value">0</output>
+                  <button type="button" class="qty__btn" data-action="inc" aria-label="Augmenter la quantité">+</button>
+                </div>
+              </div>
+              <div class="qty" data-price="70">
+                <span class="qty__label">2 places<b>70 €</b></span>
+                <div class="qty__ctrl">
+                  <button type="button" class="qty__btn" data-action="dec" aria-label="Diminuer la quantité">−</button>
+                  <output class="qty__value">0</output>
+                  <button type="button" class="qty__btn" data-action="inc" aria-label="Augmenter la quantité">+</button>
+                </div>
+              </div>
+              <div class="qty" data-price="80">
+                <span class="qty__label">King size<b>80 €</b></span>
+                <div class="qty__ctrl">
+                  <button type="button" class="qty__btn" data-action="dec" aria-label="Diminuer la quantité">−</button>
+                  <output class="qty__value">0</output>
+                  <button type="button" class="qty__btn" data-action="inc" aria-label="Augmenter la quantité">+</button>
+                </div>
               </div>
             </div>
           </fieldset>
         </div>
         <aside class="estim__result">
           <p class="estim__rlabel">Votre estimation</p>
-          <p class="estim__price"><span id="estimTextilePrice">—</span> €<small>prix indicatif TTC, hors déplacement</small></p>
+          <p class="estim__price"><span id="estimTextilePrice">0</span> €<small>prix indicatif TTC, hors déplacement</small></p>
           <p class="estim__note">Le tarif définitif est confirmé au devis, selon l'état réel à traiter.</p>
           <a class="btn btn--lg" id="estimTextileCta" href="contact.html">Demander ce devis</a>
           <a class="estim__tel" href="tel:+33648707861">ou nous appeler au 06 48 70 78 61</a>
