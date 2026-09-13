@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#041b2e"/>
+      <stop offset="1" stop-color="#0a2f4a"/>
+    </linearGradient>
+    <linearGradient id="drop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0369a1"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.1" r="0.8">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M120 175c40 50 62 76 62 108a62 62 0 1 1-124 0c0-32 22-58 62-108Z" fill="url(#drop)"/>
+  <path d="M96 262a31 31 0 0 0 31 31" stroke="#eaf6fb" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <text x="230" y="255" font-family="Poppins, Arial, sans-serif" font-size="72" font-weight="800" fill="#ffffff">H2Ouf Propre 45</text>
+  <text x="230" y="315" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600" fill="#7dd3fc">Nettoyage auto, canapé &amp; textile à domicile</text>
+  <text x="230" y="365" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="400" fill="#bcdcec">Orléans &amp; agglomération — disponible 24h/24</text>
+  <g font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600" fill="#eaf6fb">
+    <circle cx="242" cy="450" r="4" fill="#22d3ee"/>
+    <text x="256" y="457">À domicile</text>
+    <circle cx="420" cy="450" r="4" fill="#22d3ee"/>
+    <text x="434" y="457">Disponible 24h/24</text>
+    <circle cx="660" cy="450" r="4" fill="#22d3ee"/>
+    <text x="674" y="457">Orléans et alentours</text>
+  </g>
+</svg>
