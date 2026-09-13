@@ -25,5 +25,6 @@ Prévu pour Vercel — déploiement automatique à chaque push sur `main`.
 - **Urgent — clé Web3Forms** : configurer `access_key` dans `contact.html` pour activer l'envoi direct (ne pas laisser le site vivre uniquement sur le fallback mailto ci-dessus).
 - Forme juridique, SIRET complet, e-mail de contact, nom de famille du responsable de publication dans `mentions-legales.html`
 - **Photos** : le logo réel du client est utilisé partout (header/footer/favicon/apple-touch-icon/og-image), 3 photos hero (`assets/heros/`) illustrent l'accueil et les 2 pages de service, et 8 photos d'interventions (`assets/realisations/`) alimentent la galerie et les bandeaux "pourquoi nous choisir". Couverture encore incomplète : aucune photo de tapis ni de matelas — à demander au client si possible, des photos de smartphone suffisent.
-- `assets/og-image.svg` (image de partage réseaux sociaux) intègre déjà le vrai logo mais reste au format SVG ; Facebook/X préfèrent un raster (JPG/PNG 1200×630) pour un rendu garanti — convertir si besoin d'une compatibilité maximale.
+- `assets/og-image.jpg` (image de partage réseaux sociaux) est désormais un raster JPG 1200×630 (généré à partir du vrai logo, compatible Facebook/X/WhatsApp).
+- Un crédit « Powered by Redesign » (`assets/redesign-logo.jpg`) a été ajouté en pied de page sur les 5 pages — badge statique (non cliquable) faute d'URL de l'agence à ce jour ; à transformer en lien dès que l'URL est connue.
 - Redirections depuis les anciennes URLs Framer lors de la bascule du domaine
